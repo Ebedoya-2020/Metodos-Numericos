@@ -1,0 +1,46 @@
+importar  numpy
+m = int ( input ( 'Valor de m:' )) #filas = m
+n = int ( input ( 'Valor de n:' )) #columnas = n
+matriz  =  numpy . ceros (( m , n ))
+x = numpy . ceros (( m ))
+
+vector = numpy . ceros (( n ))
+comp = numpy . ceros (( m ))
+error = []
+
+print ( 'Método de Gauss-Seidel' )
+print ( 'Introducir la matriz de coeficientes y el vector solución' )
+para  r  en el  rango ( 0 , m ):
+    para  c  en el  rango ( 0 , n ):
+        matriz [( r ), ( c )] = float ( input ( "Elemento a [" + str ( r + 1 ) + str ( c + 1 ) + "]" ))
+    vector [( r )] = float ( input ( 'b [' + str ( r + 1 ) + ']:' ))
+tol = float ( input ( "¿Cua es la tolerancia que desean?" ))
+itera = int ( input ( "¿Cual es el numero maximo de iteraciones?" ))
+#metodo de gauss-siedel
+
+k = 0
+mientras que  k  <  itera :
+    suma = 0
+    k = k + 1
+    para  r  en el  rango ( 0 , m ):
+        suma = 0
+        para  c  en el  rango ( 0 , n ):
+            si ( c  ! =  r ):
+                suma = suma + matriz [ r , c ] * x [ c ]               
+        x [ r ] = ( vector [ r ] - suma ) / matriz [ r , r ]
+    print ( "x [" + str ( r ) + "]:" + str ( x [ r ]))
+    del  error [:]
+    # Comprobación
+    para  r  en el  rango ( 0 , m ):
+        suma = 0
+        para  c  en el  rango ( 0 , n ):
+            suma = suma + matriz [ r , c ] * x [ c ]
+        comp [ r ] = suma
+        dif = abs ( comp [ r ] - vector [ r ])
+        de error . agregar ( dif )
+        print ( "error en x [" , r , "] =" , error [ r ])
+    print ( "iteracion:" , k )
+    si  todo ( i <= tol  para  i  por  error ) ==  Verdadero :
+        descanso
+
+imprimir ( "Bay bay" )           
